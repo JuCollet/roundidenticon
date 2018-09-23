@@ -45,7 +45,7 @@ class Identicon extends React.Component {
     const { colors, circles, name, size } = this.props,
           halfSize = Math.round(size/2),
           hashedName = this.getStringHashCode(name),
-          colorsArray = this.getValuesArray(hashedName, colors.length);
+          colorsArray = this.getValuesArray(hashedName, colors.length - 1);
 
     let drawedCirclesCounter = circles;
 
@@ -60,7 +60,7 @@ class Identicon extends React.Component {
     while(drawedCirclesCounter) {
       const circleSize = (size/circles) * drawedCirclesCounter;
       ctx.beginPath();
-      ctx.fillStyle = colors[colorsArray[this.getRelativeNumber(drawedCirclesCounter, circles, colors.length)]];
+      ctx.fillStyle = colors[colorsArray[this.getRelativeNumber(drawedCirclesCounter, circles, colorsArray.length - 1)]];
       ctx.arc(halfSize, halfSize, circleSize/2, 0, Math.PI * 2, true);
       ctx.fill();
       drawedCirclesCounter -= 1;
